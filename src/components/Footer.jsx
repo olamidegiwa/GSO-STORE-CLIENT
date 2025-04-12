@@ -9,16 +9,16 @@ import {
 const Footer = () => {
   const getYear = new Date().getFullYear();
   return (
-    <footer className="flexCenter pb-24 pt-20">
+    <footer className="flexCenter pb-24 pt-20 ">
       <div className="max-padd-container flex w-full flex-col gap-14">
         <div className="flex flex-col items-start justify-center gap-[10%] md:flex-row">
-          {/* <Link to={"/"} className="mb-10 bold-20">
-            Shoppee
-          </Link> */}
+          <Link to={"/"} className="mb-10 bold-20">
+            <span className="text-green-400">GSO</span>-STORE
+          </Link>
           <div className="flex flex-wrap gap-8 sm:justify-between md:flex-1">
             {FOOTER_LINKS.map((col) => (
               <FooterColumn title={col.title} key={col.title}>
-                <ul className="flex flex-col gap-4 regular-14 text-gray-20">
+                <ul className="flex flex-col text-start gap-4 regular-14 text-gray-20">
                   {col.links.map((link) => (
                     <Link to={"/"} key={link}>
                       {link}
@@ -27,7 +27,7 @@ const Footer = () => {
                 </ul>
               </FooterColumn>
             ))}
-            <div className="flex flex-col gap-5 ">
+            <div className="flex flex-col gap-5 text-start">
               <FooterColumn title={FOOTER_CONTACT_INFO.title}>
                 {FOOTER_CONTACT_INFO.links.map((link) => (
                   <Link
