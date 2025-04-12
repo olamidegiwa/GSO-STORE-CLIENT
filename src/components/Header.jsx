@@ -13,7 +13,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 m-auto max-padd-container w-full bg-white ring-1 ring-slate-900/5 z-10">
       <div className="px-4 flexBetween place-items-center  py-3 max-xs:px-2">
         <div>
-          <Link className="text-[16px] font-light text-gray-50">
+          <Link to={"/"} className="text-[16px] font-light text-gray-50">
             {" "}
             <span className="text-green-400">GSO</span>-STORE
           </Link>
