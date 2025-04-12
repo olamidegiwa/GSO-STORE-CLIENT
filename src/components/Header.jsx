@@ -12,7 +12,19 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 m-auto max-padd-container w-full bg-white ring-1 ring-slate-900/5 z-10">
       <div className="px-4 flexBetween place-items-center  py-3 max-xs:px-2">
-        <div>
+        <div className="flexCenter gap-2">
+        {!menuOpened ? (
+            <MdMenu
+              className="md:hidden cursor-pointer hover:text-green-400 mr-2 p-1 ring-1 ring-slate-900/30 h-8 w-8 rounded-full "
+              onClick={toggleMenu}
+            />
+          ) : (
+            <MdClose
+              className="md:hidden  cursor-pointer hover:text-green-400 mr-2 p-1 ring-1 ring-slate-900/30 h-8 w-8 rounded-full "
+              onClick={toggleMenu}
+            />
+          )}
+
           <Link to={"/"} className="text-[16px] font-light text-gray-50">
             {" "}
             <span className="text-green-400">GSO</span>-STORE
@@ -34,7 +46,7 @@ const Header = () => {
             `}
         />
         <div className="flexBetween sm:gap-x-2 bold-16 ">
-          {!menuOpened ? (
+        {/* {!menuOpened ? (
             <MdMenu
               className="md:hidden cursor-pointer hover:text-green-400 mr-2 p-1 ring-1 ring-slate-900/30 h-8 w-8 rounded-full "
               onClick={toggleMenu}
@@ -44,7 +56,7 @@ const Header = () => {
               className="md:hidden  cursor-pointer hover:text-green-400 mr-2 p-1 ring-1 ring-slate-900/30 h-8 w-8 rounded-full "
               onClick={toggleMenu}
             />
-          )}
+          )} */}
           <div className="flexBetween sm:gap-x-6">
             <NavLink to={"/cart-page"} className={"flex "}>
               <BsCart3 className="p-1 h-8 w-8 ring-slate-900/30 ring-1 rounded-full" />{" "}
