@@ -1,53 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { LuPlus, LuMinus } from "react-icons/lu";
 import all_products from "../utils/allProduct";
 import Item from "../components/Item";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Category = ({ category, banner }) => {
   const [open, setOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Sort by");
+  const [selectedSort, setSelectedSort] = useState("Sort");
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [selected, setSelected] = useState("Filter");
+
+  const navigate = useNavigate();
+
+  const sortOptions = ["A-Z", "Z-A", "New", "Old", "Best Selling"];
+  const handleSortChange = (sortType) => {
+    setSelectedSort(sortType);
     setOpen(false);
-    onSelect(category);
   };
+
+  const selectOptions = ["HF", "ZARA", "ZTTW"];
+  const handleSelectedChange = (selectType) => {
+    setSelected(selectType);
+    setFilterOpen(false);
+    navigate(`/${selectType.toLowerCase()}`);
+  };
+
   return (
     <section className="max-padd-container py-12 xl:py-28">
       <div>
         <div>
-          <img src={banner} alt="" className="block my-7 mx-auto" />
+          <img src={banner} alt="bannerImg" className="block my-7 mx-auto" />
         </div>
         <div className="flexBetween my-8 mx-2">
-          <h5>
-            <span className="font-light text-green-400">Showing 1-12</span> Out
-            0f 36 Products
-          </h5>
+         <div className="relative">
+         <div
+            onClick={() => setFilterOpen(!filterOpen)}
+            className="flexBetween gap-x-2 font-light text-gray-500 cursor-pointer"
+          >
+            {selected}
+            {filterOpen ? <LuMinus /> : <LuPlus />}
+          </div>
+          {filterOpen && (
+            <div className="flex flex-col gap-y-3 cursor-pointer  ring-1 ring-slate-900/15 text-gray-500 p-3 absolute left-[5%] top-10 z-10">
+              <ul className="text-start list-disc pl-5 space-y-2 font-light text-decoration">
+                {selectOptions.map((data) => {
+                  return (
+                    <li key={data} onClick={() => handleSelectedChange(data)}>
+                      {data}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+         </div>
           <div>
             <div
               onClick={() => setOpen(!open)}
-              className="flexBetween max-sm:p-4 gap-x-4 px-8 py-3 rounded-xl ring-1 ring-slate-900/15 cursor-pointer "
+              className="flexBetween  gap-x-2 px-4 py-3 rounded-xl font-light text-gray-500 cursor-pointer "
             >
-              {selectedCategory} <MdOutlineKeyboardArrowDown />
+              {selectedSort}
+              {open ? <LuMinus /> : <LuPlus />}
             </div>
             {open && (
-              <div className="flex flex-col gap-y-3 cursor-pointer rounded-xl ring-1 ring-slate-900/15 p-3 mt-2">
-                <NavLink to={"/hf"} onClick={() => handleCategoryClick("HF")}>
-                  HF
-                </NavLink>
-                <NavLink
-                  to={"/zttw"}
-                  onClick={() => handleCategoryClick("ZTTW")}
-                >
-                  ZTTW
-                </NavLink>
-                <NavLink
-                  to={"/zara"}
-                  onClick={() => handleCategoryClick("ZARA")}
-                >
-                  ZARA
-                </NavLink>
+              <div className="flex flex-col gap-y-3 cursor-pointer  ring-1 ring-slate-900/15 text-gray-500 p-3 ">
+                <ul className="text-start list-disc pl-5 space-y-2 font-light text-decoration">
+                  {sortOptions.map((option) => {
+                    return (
+                      <li key={option} onClick={() => handleSortChange(option)}>
+                        {option}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             )}
           </div>
@@ -70,11 +96,11 @@ const Category = ({ category, banner }) => {
           })}
         </div>
 
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <button className=" bg-gray-90 text-white rounded-2xl px-5 py-2 text-base">
             Load More
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

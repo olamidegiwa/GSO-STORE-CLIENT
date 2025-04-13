@@ -198,7 +198,7 @@ let all_products = [
   },
   {
     id: 21,
-    name: "ZTTW Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
+    name: "Zara Gown",
     category: "ZARA",
     image: p21_img,
     new_price: 85,
@@ -206,7 +206,7 @@ let all_products = [
   },
   {
     id: 22,
-    name: "ZTTW Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
+    name: "Zara Gown",
     category: "ZARA",
     image: p22_img,
     new_price: 85,
